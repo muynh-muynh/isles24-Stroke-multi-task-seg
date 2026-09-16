@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISLES'24 Model Architecture — Technical Specification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: #12151f;
+      --border: #232838;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #eb6c36;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 1240px;
+    }
+    header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    p.subtitle {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(235, 108, 54, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(235, 108, 54, 0.3);
+    }
+    .diagram-viewport {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      overflow-x: auto;
+    }
+    .diagram-viewport img, .diagram-viewport svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .legend-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .legend-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend-card h3.coral { color: var(--accent); }
+    .legend-card h3.cyan { color: var(--cyan); }
+    .legend-card h3.emerald { color: var(--emerald); }
+    .legend-card p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>ISLES'24 Multi-Task Network Architecture</h1>
+        <p class="subtitle">SINGLE-ENCODER TRIPLE-DECODER • KNOWLEDGE CASCADE • PERFUSION FORECASTING</p>
+      </div>
+      <div>
+        <span class="badge">PyTorch 2.x • RadImageNet</span>
+      </div>
+    </header>
+
+    <div class="diagram-viewport">
+      <object type="image/svg+xml" data="architecture.svg" style="width:100%; height:auto;">
+        Your browser does not support SVG
+      </object>
+    </div>
+
+    <div class="legend-grid">
+      <div class="legend-card">
+        <h3 class="coral">⚡ Knowledge Cascade (CoW → LVO)</h3>
+        <p>Uses deep vascular features with <code>detach()</code> to guide Large Vessel Occlusion localization while completely preventing adversarial gradient contamination from destroying vascular continuity.</p>
+      </div>
+      <div class="legend-card">
+        <h3 class="emerald">🧬 Perfusion Physics Encoder</h3>
+        <p>10-channel clinical prior module that extracts hemispheric asymmetry |Tmax - Flip(Tmax)| and automatically generates Core, Penumbra, and Mismatch maps without altering RadImageNet weights.</p>
+      </div>
+      <div class="legend-card">
+        <h3 class="cyan">🎯 Dual-Stream Shallow Conv0</h3>
+        <p>Stream A (3×3) captures ultra-sharp vessel edges for CoW and LVO, while Stream B (9×9) preserves broad context for diffuse ischemic core textures.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

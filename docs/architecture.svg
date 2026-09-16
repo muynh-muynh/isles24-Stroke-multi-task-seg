@@ -1,0 +1,312 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0d13"/>
+      <stop offset="100%" stop-color="#12151f"/>
+    </linearGradient>
+
+    <!-- Node Surface Gradients -->
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c2030"/>
+      <stop offset="100%" stop-color="#151824"/>
+    </linearGradient>
+    <linearGradient id="focalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a1b18"/>
+      <stop offset="100%" stop-color="#1f1412"/>
+    </linearGradient>
+    <linearGradient id="cowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#132333"/>
+      <stop offset="100%" stop-color="#0e1824"/>
+    </linearGradient>
+    <linearGradient id="physicsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#12261e"/>
+      <stop offset="100%" stop-color="#0b1713"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#eb6c36"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+    </marker>
+
+    <!-- Drop Shadows -->
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title-main { font-family: 'Geist', -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #f8fafc; letter-spacing: -0.02em; }
+    .title-sub { font-family: 'Geist Mono', monospace; font-size: 11px; fill: #94a3b8; letter-spacing: 0.08em; text-transform: uppercase; }
+    .zone-box { fill: rgba(30, 41, 59, 0.28); stroke: rgba(100, 116, 139, 0.22); stroke-width: 1px; rx: 12px; }
+    .zone-title { font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 600; fill: #64748b; letter-spacing: 0.12em; text-transform: uppercase; }
+    .node-box { fill: url(#nodeGrad); stroke: #2a334a; stroke-width: 1.2px; rx: 8px; filter: url(#shadow); }
+    .node-box-coral { fill: url(#focalGrad); stroke: #eb6c36; stroke-width: 1.4px; rx: 8px; filter: url(#shadow); }
+    .node-box-cyan { fill: url(#cowGrad); stroke: #0284c7; stroke-width: 1.2px; rx: 8px; filter: url(#shadow); }
+    .node-box-emerald { fill: url(#physicsGrad); stroke: #059669; stroke-width: 1.2px; rx: 8px; filter: url(#shadow); }
+    .node-text-title { font-family: 'Geist', -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .node-text-sub { font-family: 'Geist Mono', monospace; font-size: 9.5px; fill: #94a3b8; }
+    .node-text-badge { font-family: 'Geist Mono', monospace; font-size: 8px; font-weight: 500; fill: #38bdf8; }
+    .node-badge-coral { font-family: 'Geist Mono', monospace; font-size: 8px; font-weight: 600; fill: #eb6c36; }
+    .wire { fill: none; stroke: #475569; stroke-width: 1.4px; }
+    .wire-dashed { fill: none; stroke: #64748b; stroke-width: 1.2px; stroke-dasharray: 4, 3; }
+    .wire-coral { fill: none; stroke: #eb6c36; stroke-width: 1.6px; }
+    .wire-cyan { fill: none; stroke: #38bdf8; stroke-width: 1.4px; }
+    .wire-emerald { fill: none; stroke: #10b981; stroke-width: 1.4px; }
+    .wire-label { font-family: 'Geist Mono', monospace; font-size: 8px; fill: #94a3b8; text-anchor: middle; }
+    .wire-label-coral { font-family: 'Geist Mono', monospace; font-size: 8.5px; font-weight: 600; fill: #f97316; text-anchor: middle; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="16"/>
+
+  <!-- ================= HEADER ================= -->
+  <g transform="translate(40, 42)">
+    <text class="title-main" x="0" y="0">ISLES'24 SOTA Architecture</text>
+    <text class="title-sub" x="0" y="18">Single-Encoder Triple-Decoder UNet with Gradient-Isolated Knowledge Cascade &amp; Physics Forecasting</text>
+  </g>
+
+  <!-- ================= ZONES ================= -->
+
+  <!-- ZONE 1: Input & Dual-Stream Encoder -->
+  <rect class="zone-box" x="40" y="80" width="280" height="740"/>
+  <text class="zone-title" x="56" y="104">01 // Input &amp; Backbone (RadImageNet)</text>
+
+  <!-- ZONE 2: Bottleneck & Shared Low-Res Decoder -->
+  <rect class="zone-box" x="340" y="80" width="230" height="740"/>
+  <text class="zone-title" x="356" y="104">02 // Shared Low-Res Semantics</text>
+
+  <!-- ZONE 3: Triple Knowledge-Cascade Decoders -->
+  <rect class="zone-box" x="590" y="80" width="350" height="740"/>
+  <text class="zone-title" x="606" y="104">03 // Triple Decoders &amp; Physics Injection</text>
+
+  <!-- ZONE 4: Multi-Task Clinical Heads -->
+  <rect class="zone-box" x="960" y="80" width="200" height="740"/>
+  <text class="zone-title" x="976" y="104">04 // Clinical Heads &amp; Losses</text>
+
+
+  <!-- ================= ZONE 1 NODES ================= -->
+
+  <!-- 1.1 Input Tensor -->
+  <g transform="translate(60, 130)">
+    <rect class="node-box" width="240" height="66"/>
+    <text class="node-text-title" x="14" y="24">18-Channel 2.5D CT Input</text>
+    <text class="node-text-sub" x="14" y="42">6 CTA (w1, w2) + 12 CTP (MIP±7)</text>
+    <text class="node-text-badge" x="14" y="56">Shape: [B, 18, 256, 256]</text>
+  </g>
+
+  <!-- 1.2 Slice Attention -->
+  <g transform="translate(60, 224)">
+    <rect class="node-box" width="240" height="46"/>
+    <text class="node-text-title" x="14" y="22">SliceAttention Module</text>
+    <text class="node-text-sub" x="14" y="38">Dual-Pooling SE Channel Reweight</text>
+  </g>
+
+  <!-- 1.3 Dual-Stream Conv0 -->
+  <g transform="translate(60, 298)">
+    <rect class="node-box-coral" width="240" height="76"/>
+    <text class="node-text-title" x="14" y="22">Dual-Stream Shallow Conv0</text>
+    <text class="node-text-sub" x="14" y="40">Stream A (3×3, 32ch): Sharp Vessel Edges</text>
+    <text class="node-text-sub" x="14" y="55">Stream B (9×9, 32ch): Diffuse Lesion Texture</text>
+    <text class="node-badge-coral" x="14" y="69">Concat: [B, 64, 128, 128] → s1</text>
+  </g>
+
+  <!-- 1.4 DenseNet-121 Stages -->
+  <g transform="translate(60, 404)">
+    <rect class="node-box" width="240" height="48"/>
+    <text class="node-text-title" x="14" y="22">DenseBlock 1 (s2)</text>
+    <text class="node-text-sub" x="14" y="38">[B, 256, 64, 64] • RadImageNet</text>
+  </g>
+  <g transform="translate(60, 474)">
+    <rect class="node-box" width="240" height="48"/>
+    <text class="node-text-title" x="14" y="22">DenseBlock 2 (s3)</text>
+    <text class="node-text-sub" x="14" y="38">[B, 512, 32, 32] • RadImageNet</text>
+  </g>
+  <g transform="translate(60, 544)">
+    <rect class="node-box" width="240" height="48"/>
+    <text class="node-text-title" x="14" y="22">DenseBlock 3 (s4)</text>
+    <text class="node-text-sub" x="14" y="38">[B, 1024, 16, 16] • RadImageNet</text>
+  </g>
+  <g transform="translate(60, 614)">
+    <rect class="node-box" width="240" height="48"/>
+    <text class="node-text-title" x="14" y="22">DenseBlock 4 (s5)</text>
+    <text class="node-text-sub" x="14" y="38">[B, 1024, 8, 8] • Deepest Latent</text>
+  </g>
+
+  <!-- Connections in Zone 1 -->
+  <path d="M 180,196 V 224" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 180,270 V 298" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 180,374 V 404" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 180,452 V 474" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 180,522 V 544" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 180,592 V 614" class="wire" marker-end="url(#arrow)"/>
+
+
+  <!-- ================= ZONE 2 NODES ================= -->
+
+  <!-- 2.1 Shared Bottleneck -->
+  <g transform="translate(355, 614)">
+    <rect class="node-box" width="200" height="52"/>
+    <text class="node-text-title" x="12" y="22">DenseGlobalBottleneck</text>
+    <text class="node-text-sub" x="12" y="38">7×7 Depthwise Conv, 1024ch</text>
+    <text class="node-text-badge" x="12" y="47">x_bottleneck: [B, 1024, 8, 8]</text>
+  </g>
+
+  <!-- 2.2 Shared Dec4 -->
+  <g transform="translate(355, 524)">
+    <rect class="node-box" width="200" height="50"/>
+    <text class="node-text-title" x="12" y="22">Shared dec4 (Up ×2)</text>
+    <text class="node-text-sub" x="12" y="38">DualAttention • [B, 256, 16, 16]</text>
+  </g>
+
+  <!-- 2.3 Shared Dec3 -->
+  <g transform="translate(355, 434)">
+    <rect class="node-box" width="200" height="50"/>
+    <text class="node-text-title" x="12" y="22">Shared dec3 (Up ×2)</text>
+    <text class="node-text-sub" x="12" y="38">DualAttention • [B, 128, 32, 32]</text>
+  </g>
+
+  <!-- 2.4 LVO Slice Classifier -->
+  <g transform="translate(355, 334)">
+    <rect class="node-box" width="200" height="58"/>
+    <text class="node-text-title" x="12" y="22">LVOSliceClassifier</text>
+    <text class="node-text-sub" x="12" y="38">GAP+GMP Pooling → Linear</text>
+    <text class="node-badge-coral" x="12" y="50">Bias init: -3.5 (P≈0.03 Prior)</text>
+  </g>
+
+  <!-- Connections Zone 1 -> Zone 2 -->
+  <path d="M 300,638 H 355" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 455,614 V 574" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 455,524 V 484" class="wire" marker-end="url(#arrow)"/>
+  <path d="M 455,434 V 392" class="wire-dashed" marker-end="url(#arrow)"/>
+
+  <!-- Skip connections into Shared Decoders -->
+  <!-- s4 into dec4 -->
+  <path d="M 300,568 H 355" class="wire-dashed" marker-end="url(#arrow)"/>
+  <!-- s3 into dec3 -->
+  <path d="M 300,498 H 330 Q 338,498 338,490 V 460 Q 338,454 346,454 H 355" class="wire-dashed" marker-end="url(#arrow)"/>
+
+
+  <!-- ================= ZONE 3 NODES (TRIPLE DECODER) ================= -->
+
+  <!-- 3.1 CoW Branch (Top) -->
+  <g transform="translate(610, 140)">
+    <rect class="node-box-cyan" width="310" height="76"/>
+    <text class="node-text-title" x="14" y="22">CoW Path (Vascular Tree)</text>
+    <text class="node-text-sub" x="14" y="40">dec2 (64ch, /4) → dec1 (32ch, /2) → UpFinal</text>
+    <text class="node-text-sub" x="14" y="56">Skip: s2, s1 • DualAttention Gate</text>
+    <text class="node-text-badge" x="14" y="69">f_cow: [B, 16, 256, 256]</text>
+  </g>
+
+  <!-- 3.2 LVO Branch (Middle) -->
+  <g transform="translate(610, 276)">
+    <rect class="node-box-coral" width="310" height="96"/>
+    <text class="node-text-title" x="14" y="22">LVO Path (Occlusion Localization)</text>
+    <text class="node-text-sub" x="14" y="40">dec2 (64ch) → dec1 (32ch) → UpFinal</text>
+    <text class="node-badge-coral" x="14" y="58">⚡ Guidance: FusedSpatialAttn(f_cow.detach())</text>
+    <text class="node-text-sub" x="14" y="74">Multi-level dec2 &amp; dec1 CoW features injected</text>
+    <text class="node-badge-coral" x="14" y="88">Gated by p_lvo_slice (False-Positive Supression)</text>
+  </g>
+
+  <!-- 3.3 Perfusion Physics Encoder (Bottom Side) -->
+  <g transform="translate(610, 440)">
+    <rect class="node-box-emerald" width="310" height="96"/>
+    <text class="node-text-title" x="14" y="22">PerfusionPhysicsEncoder (10 Channels)</text>
+    <text class="node-text-sub" x="14" y="40">Raw CTP (6) + Core + Penumbra + Mismatch</text>
+    <text class="node-text-sub" x="14" y="56">+ Asymmetry Map: |Tmax - Flip(Tmax)| (1ch)</text>
+    <text class="node-text-badge" x="14" y="72">Outputs: perf_feat_64 (64ch) &amp; perf_feat_128 (32ch)</text>
+    <text class="node-text-sub" x="14" y="87">Zero-safe variance protection (no NaN)</text>
+  </g>
+
+  <!-- 3.4 Lesion Path (Bottom) -->
+  <g transform="translate(610, 566)">
+    <rect class="node-box" width="310" height="114"/>
+    <text class="node-text-title" x="14" y="22">Lesion Path (Infarct Forecasting)</text>
+    <text class="node-text-sub" x="14" y="40">Independent dec4/dec3 (s4.detach, s3.detach)</text>
+    <text class="node-text-sub" x="14" y="56">dec2: s2 + perf_feat_64 (64ch)</text>
+    <text class="node-text-sub" x="14" y="72">dec1: s1 + perf_feat_128 (32ch)</text>
+    <text class="node-badge-coral" x="14" y="88">Fused Guidance: [f_lvo.detach(), f_cow.detach()]</text>
+    <text class="node-text-badge" x="14" y="104">Direct flow from x_bottleneck</text>
+  </g>
+
+  <!-- Connections into Zone 3 -->
+  <!-- x_shared -> CoW Path -->
+  <path d="M 555,444 H 575 Q 583,444 583,430 V 180 Q 583,170 595,170 H 610" class="wire" marker-end="url(#arrow)"/>
+  
+  <!-- x_shared -> LVO Path -->
+  <path d="M 555,454 H 570 Q 580,454 580,430 V 330 Q 580,320 595,320 H 610" class="wire" marker-end="url(#arrow)"/>
+  
+  <!-- x_bottleneck -> Lesion Path -->
+  <path d="M 555,640 H 610" class="wire-coral" marker-end="url(#arrow-coral)"/>
+
+  <!-- Raw CTP into Perfusion Physics Encoder -->
+  <path d="M 180,130 V 116 Q 180,110 190,110 H 590 Q 602,110 602,125 V 470 Q 602,480 610,480" class="wire-emerald" marker-end="url(#arrow-emerald)"/>
+  <text class="wire-label" x="380" y="104">Raw CTP maps [B, 6, 256, 256]</text>
+
+  <!-- Physics Encoder -> Lesion Path -->
+  <path d="M 765,536 V 566" class="wire-emerald" marker-end="url(#arrow-emerald)"/>
+
+  <!-- *** KNOWLEDGE CASCADE: CoW -> LVO *** -->
+  <path d="M 765,216 V 276" class="wire-coral" marker-end="url(#arrow-coral)"/>
+  <rect x="700" y="238" width="130" height="18" rx="4" fill="#1f1412" stroke="#eb6c36" stroke-width="0.8"/>
+  <text class="wire-label-coral" x="765" y="250">CoW.detach() Guidance</text>
+
+  <!-- LVO Classifier Gate -> LVO Path -->
+  <path d="M 555,360 H 610" class="wire-dashed" marker-end="url(#arrow)"/>
+
+
+  <!-- ================= ZONE 4 NODES (HEADS & LOSSES) ================= -->
+
+  <!-- 4.1 CoW Head -->
+  <g transform="translate(980, 140)">
+    <rect class="node-box-cyan" width="160" height="76"/>
+    <text class="node-text-title" x="12" y="22">CoW Head</text>
+    <text class="node-text-sub" x="12" y="38">ResBlock + SE + Conv1x1</text>
+    <text class="node-text-badge" x="12" y="52">Soft Tversky (β=0.8)</text>
+    <text class="node-text-badge" x="12" y="66">+ Soft clDice (0.45)</text>
+  </g>
+
+  <!-- 4.2 LVO Head -->
+  <g transform="translate(980, 276)">
+    <rect class="node-box-coral" width="160" height="96"/>
+    <text class="node-text-title" x="12" y="22">LVO Head</text>
+    <text class="node-text-sub" x="12" y="38">Output: Heatmap [0,1]</text>
+    <text class="node-badge-coral" x="12" y="54">Modified Focal Loss</text>
+    <text class="node-text-sub" x="12" y="68">Gaussian Curr (σ→1.5)</text>
+    <text class="node-text-sub" x="12" y="82">Top-16 Neg Penalty</text>
+  </g>
+
+  <!-- 4.3 Lesion Head -->
+  <g transform="translate(980, 566)">
+    <rect class="node-box" width="160" height="114"/>
+    <text class="node-text-title" x="12" y="22">Lesion Head</text>
+    <text class="node-text-sub" x="12" y="38">Output: Infarct Mask</text>
+    <text class="node-badge-coral" x="12" y="56">Focal Tversky Loss</text>
+    <text class="node-text-sub" x="12" y="70">Soft Label Target:</text>
+    <text class="node-text-badge" x="12" y="84">• Core: 0.95 / 0.30</text>
+    <text class="node-text-badge" x="12" y="98">• Penumbra: 0.70 / 0.10</text>
+  </g>
+
+  <!-- Connections Zone 3 -> Zone 4 -->
+  <path d="M 920,178 H 980" class="wire-cyan" marker-end="url(#arrow-cyan)"/>
+  <path d="M 920,324 H 980" class="wire-coral" marker-end="url(#arrow-coral)"/>
+  <path d="M 920,623 H 980" class="wire" marker-end="url(#arrow)"/>
+
+
+  <!-- ================= FOOTER / CLINICAL METRICS ================= -->
+  <g transform="translate(60, 770)">
+    <rect width="1080" height="42" rx="6" fill="#141824" stroke="#252c40" stroke-width="1"/>
+    <text class="node-text-title" x="18" y="25" fill="#f8fafc">Evaluation Framework:</text>
+    <text class="node-text-sub" x="175" y="25">Patient-Level True 3D Volumetric Metrics (DDP all_gather_object) • 3D ALCD (Connected Components via scipy) • 3D AVD (%) • Core-Only Dice (Penumbra Masked)</text>
+  </g>
+
+</svg>
